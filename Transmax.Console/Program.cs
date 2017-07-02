@@ -23,6 +23,8 @@ namespace Transmax.Console
      * (2) No CSV file validation is done, I assume at the moment that the 
      *     content of the file is valid!
      * 
+     * (2) No performance test done yet (e.g. using large files).
+     * 
      */
     public static class Program
     {
