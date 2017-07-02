@@ -8,7 +8,7 @@ using Transmax.Core.Interfaces.Csv;
 namespace Transmax.Core.Csv
 {
     [UsedImplicitly]
-    public class LinqGrader
+    public partial class LinqGrader
         : IGrader
     {
         public LinqGrader(
@@ -77,11 +77,12 @@ namespace Transmax.Core.Csv
                                                   {
                                                       data = csvLine.Trim().Split(',')
                                                   })
+                               .Where(parts => parts.data.Length == 3)
                                .Select(s => new
                                             {
                                                 Surname = s.data [ ColumnSurname ].Trim(),
                                                 FirstName = s.data [ ColumnFirstName ].Trim(),
-                                                Score = Convert.ToInt32(s.data [ ColumnScore ])
+                                                Score = ConvertScore.ToInt32(s.data [ ColumnScore ])
                                             })
                                .OrderByDescending(x => x.Score)
                                .ThenBy(x => x.Surname.ToUpper())

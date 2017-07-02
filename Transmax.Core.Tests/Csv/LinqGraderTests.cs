@@ -62,6 +62,42 @@ namespace Transmax.Core.Tests.Csv
                    };
         }
 
+        private IEnumerable <string> CreateLinesWithOneColumnMissing()
+        {
+            return new[]
+                   {
+                       "TED, BUNDY, 88",
+                       "ALLAN, SMITH, 85",
+                       "MADISON, KING, 83",
+                       "FRANCIS, SMITH, 85",
+                       "JOE, COOL"
+                   };
+        }
+
+        private IEnumerable <string> CreateLinesWithOneScoreMissing()
+        {
+            return new[]
+                   {
+                       "TED, BUNDY, 88",
+                       "ALLAN, SMITH, 85",
+                       "MADISON, KING, 83",
+                       "FRANCIS, SMITH, 85",
+                       "JOE, COOL,"
+                   };
+        }
+
+        private IEnumerable <string> CreateResultWithOneScoreMissing()
+        {
+            return new[]
+                   {
+                       "BUNDY, TED, 88",
+                       "SMITH, ALLAN, 85",
+                       "SMITH, FRANCIS, 85",
+                       "KING, MADISON, 83",
+                       "COOL, JOE, " + int.MinValue
+                   };
+        }
+
         private IEnumerable <string> CreateLinesUpperLowerCase()
         {
             return new[]
@@ -100,6 +136,36 @@ namespace Transmax.Core.Tests.Csv
             // Act
             // Assert
             Assert.Throws <GraderException>(() => m_Sut.Process());
+        }
+
+        [Test]
+        public void Process_Ignores_Lines_With_Missing_Column()
+        {
+            // Arrange
+            m_Input.ReadLines().Returns(CreateLinesWithOneColumnMissing());
+            IEnumerable <string> expected = CreateResult();
+
+            // Act
+            m_Sut.Process();
+
+            // Assert
+            m_Output.Received()
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
+        }
+
+        [Test]
+        public void Process_Ignores_Lines_With_Missing_Score()
+        {
+            // Arrange
+            m_Input.ReadLines().Returns(CreateLinesWithOneScoreMissing());
+            IEnumerable <string> expected = CreateResultWithOneScoreMissing();
+
+            // Act
+            m_Sut.Process();
+
+            // Assert
+            m_Output.Received()
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
         }
 
 

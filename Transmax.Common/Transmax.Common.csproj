@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertScore.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="LoggingModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

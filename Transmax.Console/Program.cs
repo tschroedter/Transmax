@@ -10,7 +10,8 @@ using static System.Console;
 namespace Transmax.Console
 {
     /*
-     * Attention: 
+     * Attention:
+     * 
      * (1) I am using the NuGet package FluentCommandLineParser to process
      *     the command line parameters. This makes it easier to add new 
      *     paramater in the future.
@@ -20,11 +21,14 @@ namespace Transmax.Console
      *     or
      *     grade-scores.exe -filename <filename>
      *
-     * (2) No CSV file validation is done, I assume at the moment that the 
-     *     content of the file is valid!
-     * 
-     * (2) No performance test done yet (e.g. using large files).
-     * 
+     * (2) Minimal CSV file validation only:
+     *     - only process lines with 3 columns
+     *     - assign int.MinValue as score if text is not parseable
+     *
+     *     Currently using LINQ which doesn't create decent error messages!
+     *
+     * (3) No performance test done yet (e.g. using large files).
+     *
      */
     public static class Program
     {
