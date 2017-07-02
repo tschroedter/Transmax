@@ -2,9 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using JetBrains.Annotations;
-using Transmax.Core.Interfaces.Csv;
+using Transmax.Common.Interfaces;
 
-namespace Transmax.Core.Csv
+namespace Transmax.Common
 {
     [UsedImplicitly]
     [ExcludeFromCodeCoverage]

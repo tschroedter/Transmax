@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transmax.CommonModule.cs" />
     <Compile Include="TransmaxConsole.cs" />
+    <Compile Include="TransmaxFile.cs" />
     <Compile Include="TransmaxLogger.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITransmaxConsole.cs" />
+    <Compile Include="ITransmaxFile.cs" />
     <Compile Include="ITransmaxLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

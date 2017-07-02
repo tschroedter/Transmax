@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
+using Transmax.Common.Interfaces;
 using Transmax.Core.Interfaces.Csv;
 
 namespace Transmax.Core.Csv

@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Autofac;
 using JetBrains.Annotations;
+using Transmax.Common;
+using Transmax.Common.Interfaces;
 using Transmax.Core.Csv;
 using Transmax.Core.Interfaces;
 using Transmax.Core.Interfaces.Csv;

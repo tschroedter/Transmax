@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Transmax.Core.Interfaces.Csv
+namespace Transmax.Common.Interfaces
 {
     public interface ITransmaxFile
     {
