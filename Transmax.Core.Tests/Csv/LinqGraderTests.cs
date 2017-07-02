@@ -17,68 +17,60 @@ namespace Transmax.Core.Tests.Csv
         [SetUp]
         public void Setup()
         {
-            m_Automocker = new NSubstituteAutoMocker<LinqGrader>();
-            m_Input = m_Automocker.Get<IInputFile>();
-            m_Output = m_Automocker.Get<IOutputFile>();
+            m_Automocker = new NSubstituteAutoMocker <LinqGrader>();
+            m_Input = m_Automocker.Get <IInputFile>();
+            m_Output = m_Automocker.Get <IOutputFile>();
 
             m_Sut = m_Automocker.ClassUnderTest;
         }
 
-        private NSubstituteAutoMocker<LinqGrader> m_Automocker;
+        private NSubstituteAutoMocker <LinqGrader> m_Automocker;
         private IInputFile m_Input;
         private LinqGrader m_Sut;
         private IOutputFile m_Output;
 
-        private IEnumerable<string> CreateResult()
+        private IEnumerable <string> CreateResult()
         {
             return new[]
-            {
-                "BUNDY, TED, 88",
-                "SMITH, ALLAN, 85",
-                "SMITH, FRANCIS, 85",
-                "KING, MADISON, 83"
-            };
+                   {
+                       "BUNDY, TED, 88",
+                       "SMITH, ALLAN, 85",
+                       "SMITH, FRANCIS, 85",
+                       "KING, MADISON, 83"
+                   };
         }
 
-        private IEnumerable<string> CreateResultUpperLowerCase()
+        private IEnumerable <string> CreateResultUpperLowerCase()
         {
             return new[]
-            {
-                "BUNDY, TED, 88",
-                "SMITH, allan, 85",
-                "smith, francis, 85",
-                "king, MADISON, 83"
-            };
+                   {
+                       "BUNDY, TED, 88",
+                       "SMITH, allan, 85",
+                       "smith, francis, 85",
+                       "king, MADISON, 83"
+                   };
         }
 
-        private IEnumerable<string> CreateLines()
+        private IEnumerable <string> CreateLines()
         {
             return new[]
-            {
-                "TED, BUNDY, 88",
-                "ALLAN, SMITH, 85",
-                "MADISON, KING, 83",
-                "FRANCIS, SMITH, 85"
-            };
+                   {
+                       "TED, BUNDY, 88",
+                       "ALLAN, SMITH, 85",
+                       "MADISON, KING, 83",
+                       "FRANCIS, SMITH, 85"
+                   };
         }
 
-        private IEnumerable<string> CreateLinesUpperLowerCase()
+        private IEnumerable <string> CreateLinesUpperLowerCase()
         {
             return new[]
-            {
-                "TED, BUNDY, 88",
-                "allan, SMITH, 85",
-                "MADISON, king, 83",
-                "francis, smith, 85"
-            };
-        }
-
-        private IEnumerable<string> CreateInvalidMissingColumn()
-        {
-            return new[]
-            {
-                "TED, BUNDY"
-            };
+                   {
+                       "TED, BUNDY, 88",
+                       "allan, SMITH, 85",
+                       "MADISON, king, 83",
+                       "francis, smith, 85"
+                   };
         }
 
         [Test]
@@ -92,7 +84,7 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             Assert.AreEqual(expected,
-                m_Sut.DestinationFilename);
+                            m_Sut.DestinationFilename);
         }
 
         [Test]
@@ -100,11 +92,14 @@ namespace Transmax.Core.Tests.Csv
         {
             // Arrange
             m_Input.When(x => x.ReadLines())
-                .Do(x => { throw new Exception("test"); });
+                   .Do(x =>
+                       {
+                           throw new Exception("test");
+                       });
 
             // Act
             // Assert
-            Assert.Throws<GraderException>(() => m_Sut.Process());
+            Assert.Throws <GraderException>(() => m_Sut.Process());
         }
 
 
@@ -113,14 +108,14 @@ namespace Transmax.Core.Tests.Csv
         {
             // Arrange
             m_Input.ReadLines().Returns(CreateLines());
-            var expected = CreateResult();
+            IEnumerable <string> expected = CreateResult();
 
             // Act
             m_Sut.Process();
 
             // Assert
             m_Output.Received()
-                .WriteAllLines(Arg.Is<IEnumerable<string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
         }
 
         [Test]
@@ -128,14 +123,14 @@ namespace Transmax.Core.Tests.Csv
         {
             // Arrange
             m_Input.ReadLines().Returns(CreateLinesUpperLowerCase());
-            var expected = CreateResultUpperLowerCase();
+            IEnumerable <string> expected = CreateResultUpperLowerCase();
 
             // Act
             m_Sut.Process();
 
             // Assert
             m_Output.Received()
-                .WriteAllLines(Arg.Is<IEnumerable<string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
         }
 
         [Test]
@@ -150,7 +145,7 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_Output.Received()
-                .WriteAllLines(Arg.Is<IEnumerable<string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
         }
 
         [Test]
@@ -164,7 +159,7 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             Assert.AreEqual(expected,
-                m_Sut.SourceFilename);
+                            m_Sut.SourceFilename);
         }
     }
 }

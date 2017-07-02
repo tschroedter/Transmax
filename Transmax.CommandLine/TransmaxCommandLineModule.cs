@@ -12,7 +12,7 @@ namespace Transmax.CommandLine
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CommandLineParser>().As<ICommandLineParser>();
+            builder.RegisterType <CommandLineParser>().As <ICommandLineParser>();
         }
     }
 }

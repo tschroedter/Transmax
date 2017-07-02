@@ -7,6 +7,6 @@ namespace Transmax.Core.Interfaces.Csv
         : IFilename
     {
         [NotNull]
-        IEnumerable<string> ReadLines();
+        IEnumerable <string> ReadLines();
     }
 }

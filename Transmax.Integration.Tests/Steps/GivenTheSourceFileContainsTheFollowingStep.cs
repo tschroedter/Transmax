@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
@@ -21,13 +22,13 @@ namespace Transmax.Integration.Tests.Steps
             var file = new SpecFlowFile(SourceFilename);
             file.Delete();
 
-            var students = table.CreateSet<StudentScores>();
+            IEnumerable <StudentScores> students = table.CreateSet <StudentScores>();
 
-            var lines = students.Select(s => s.FirstName +
-                                             ", " +
-                                             s.Surname +
-                                             ", " +
-                                             s.Score);
+            IEnumerable <string> lines = students.Select(s => s.FirstName +
+                                                              ", " +
+                                                              s.Surname +
+                                                              ", " +
+                                                              s.Score);
 
             file.WriteAllLines(lines);
 

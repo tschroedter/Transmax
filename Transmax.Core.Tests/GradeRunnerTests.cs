@@ -17,15 +17,15 @@ namespace Transmax.Core.Tests
         [SetUp]
         public void Setup()
         {
-            m_Automocker = new NSubstituteAutoMocker<GradeRunner>();
-            m_Logger = m_Automocker.Get<ITransmaxLogger>();
-            m_Grader = m_Automocker.Get<IGrader>();
-            m_Console = m_Automocker.Get<ITransmaxConsole>();
+            m_Automocker = new NSubstituteAutoMocker <GradeRunner>();
+            m_Logger = m_Automocker.Get <ITransmaxLogger>();
+            m_Grader = m_Automocker.Get <IGrader>();
+            m_Console = m_Automocker.Get <ITransmaxConsole>();
 
             m_Sut = m_Automocker.ClassUnderTest;
         }
 
-        private NSubstituteAutoMocker<GradeRunner> m_Automocker;
+        private NSubstituteAutoMocker <GradeRunner> m_Automocker;
         private ITransmaxLogger m_Logger;
         private IGrader m_Grader;
         private GradeRunner m_Sut;
@@ -47,20 +47,20 @@ namespace Transmax.Core.Tests
         {
             // Arrange
             m_Grader.When(x => x.Process())
-                .Do(x =>
-                {
-                    throw new GraderException("test",
-                        new Exception());
-                });
+                    .Do(x =>
+                        {
+                            throw new GraderException("test",
+                                                      new Exception());
+                        });
 
             // Act"
             m_Sut.Grade("students.txt");
 
             // Assert
-            m_Logger.Received().Fatal(Arg.Any<string>(),
-                Arg.Any<GraderException>());
+            m_Logger.Received().Fatal(Arg.Any <string>(),
+                                      Arg.Any <GraderException>());
 
-            m_Console.Received().WriteLine(Arg.Any<string>());
+            m_Console.Received().WriteLine(Arg.Any <string>());
         }
 
         [Test]
@@ -68,16 +68,19 @@ namespace Transmax.Core.Tests
         {
             // Arrange
             m_Grader.When(x => x.Process())
-                .Do(x => { throw new IOException(); });
+                    .Do(x =>
+                        {
+                            throw new IOException();
+                        });
 
             // Act
             m_Sut.Grade("students.txt");
 
             // Assert
-            m_Logger.Received().Fatal(Arg.Any<string>(),
-                Arg.Any<IOException>());
+            m_Logger.Received().Fatal(Arg.Any <string>(),
+                                      Arg.Any <IOException>());
 
-            m_Console.Received().WriteLine(Arg.Any<string>());
+            m_Console.Received().WriteLine(Arg.Any <string>());
         }
 
         [Test]
@@ -92,7 +95,7 @@ namespace Transmax.Core.Tests
 
             // Assert
             Assert.AreEqual(expected,
-                m_Grader.DestinationFilename);
+                            m_Grader.DestinationFilename);
         }
 
         [Test]
@@ -107,7 +110,7 @@ namespace Transmax.Core.Tests
 
             // Assert
             Assert.AreEqual(expected,
-                m_Grader.DestinationFilename);
+                            m_Grader.DestinationFilename);
         }
 
 
@@ -122,7 +125,7 @@ namespace Transmax.Core.Tests
 
             // Assert
             Assert.AreEqual(filename,
-                m_Grader.SourceFilename);
+                            m_Grader.SourceFilename);
         }
 
         [Test]
@@ -136,7 +139,7 @@ namespace Transmax.Core.Tests
 
             // Assert
             Assert.AreEqual(filename,
-                m_Grader.SourceFilename);
+                            m_Grader.SourceFilename);
         }
     }
 }

@@ -16,12 +16,12 @@ namespace Transmax.Core
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<InputFile>().As<IInputFile>();
-            builder.RegisterType<OutputFile>().As<IOutputFile>();
-            builder.RegisterType<LinqGrader>().As<IGrader>();
-            builder.RegisterType<GradeRunner>().As<IGradeRunner>();
-            builder.RegisterType<ApplicationMode>().As<IApplicationMode>();
-            builder.RegisterType<TransmaxFile>().As<ITransmaxFile>();
+            builder.RegisterType <InputFile>().As <IInputFile>();
+            builder.RegisterType <OutputFile>().As <IOutputFile>();
+            builder.RegisterType <LinqGrader>().As <IGrader>();
+            builder.RegisterType <GradeRunner>().As <IGradeRunner>();
+            builder.RegisterType <ApplicationMode>().As <IApplicationMode>();
+            builder.RegisterType <TransmaxFile>().As <ITransmaxFile>();
         }
     }
 }

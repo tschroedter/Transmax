@@ -5,17 +5,37 @@ namespace Transmax.Integration.Tests
 {
     [UsedImplicitly]
     public class StudentScores
-        : IComparable<StudentScores>
+        : IComparable <StudentScores>
     {
         public int CompareTo(StudentScores other)
         {
-            if (ReferenceEquals(this, other)) return 0;
-            if (ReferenceEquals(null, other)) return 1;
-            var firstNameComparison = string.Compare(FirstName, other.FirstName, StringComparison.Ordinal);
-            if (firstNameComparison != 0) return firstNameComparison;
-            var surnameComparison = string.Compare(Surname, other.Surname, StringComparison.Ordinal);
-            if (surnameComparison != 0) return surnameComparison;
-            return string.Compare(Score, other.Score, StringComparison.Ordinal);
+            if ( ReferenceEquals(this,
+                                 other) )
+            {
+                return 0;
+            }
+            if ( ReferenceEquals(null,
+                                 other) )
+            {
+                return 1;
+            }
+            int firstNameComparison = string.Compare(FirstName,
+                                                     other.FirstName,
+                                                     StringComparison.Ordinal);
+            if ( firstNameComparison != 0 )
+            {
+                return firstNameComparison;
+            }
+            int surnameComparison = string.Compare(Surname,
+                                                   other.Surname,
+                                                   StringComparison.Ordinal);
+            if ( surnameComparison != 0 )
+            {
+                return surnameComparison;
+            }
+            return string.Compare(Score,
+                                  other.Score,
+                                  StringComparison.Ordinal);
         }
 
         // ReSharper disable UnusedAutoPropertyAccessor.Global

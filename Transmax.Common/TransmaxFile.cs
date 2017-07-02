@@ -12,13 +12,13 @@ namespace Transmax.Common
         : ITransmaxFile
     {
         public void WriteAllLines(string filename,
-            IEnumerable<string> lines)
+                                  IEnumerable <string> lines)
         {
             File.WriteAllLines(filename,
-                lines);
+                               lines);
         }
 
-        public IEnumerable<string> ReadLines(string filename)
+        public IEnumerable <string> ReadLines(string filename)
         {
             return File.ReadLines(filename);
         }

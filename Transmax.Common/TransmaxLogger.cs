@@ -9,13 +9,14 @@ namespace Transmax.Common
     public class TransmaxLogger
         : ITransmaxLogger
     {
-        [NotNull] private readonly ILogger m_Logger;
-
         public TransmaxLogger(
             [NotNull] ILogger logger)
         {
             m_Logger = logger;
         }
+
+        [NotNull]
+        private readonly ILogger m_Logger;
 
         // todo add more methods on demand, see NLog.ILogger
 
@@ -30,10 +31,10 @@ namespace Transmax.Common
         }
 
         public void Error(string message,
-            Exception exception)
+                          Exception exception)
         {
             m_Logger.Error(exception,
-                message);
+                           message);
         }
 
         public void Fatal(string message)
@@ -42,10 +43,10 @@ namespace Transmax.Common
         }
 
         public void Fatal(string message,
-            Exception exception)
+                          Exception exception)
         {
             m_Logger.Fatal(exception,
-                message);
+                           message);
         }
     }
 }

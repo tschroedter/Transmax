@@ -15,15 +15,15 @@ namespace Transmax.Core.Tests.Csv
         [SetUp]
         public void Setup()
         {
-            m_Automocker = new NSubstituteAutoMocker<OutputFile>();
-            m_File = m_Automocker.Get<ITransmaxFile>();
-            m_Mode = m_Automocker.Get<IApplicationMode>();
-            m_Console = m_Automocker.Get<ITransmaxConsole>();
+            m_Automocker = new NSubstituteAutoMocker <OutputFile>();
+            m_File = m_Automocker.Get <ITransmaxFile>();
+            m_Mode = m_Automocker.Get <IApplicationMode>();
+            m_Console = m_Automocker.Get <ITransmaxConsole>();
 
             m_Sut = m_Automocker.ClassUnderTest;
         }
 
-        private NSubstituteAutoMocker<OutputFile> m_Automocker;
+        private NSubstituteAutoMocker <OutputFile> m_Automocker;
         private ITransmaxConsole m_Console;
         private IApplicationMode m_Mode;
         private ITransmaxFile m_File;
@@ -37,13 +37,13 @@ namespace Transmax.Core.Tests.Csv
 
             // Act
             m_Sut.WriteAllLines(new[]
-            {
-                "line1",
-                "line2"
-            });
+                                {
+                                    "line1",
+                                    "line2"
+                                });
 
             // Assert
-            m_Console.DidNotReceive().WriteLine(Arg.Any<string>());
+            m_Console.DidNotReceive().WriteLine(Arg.Any <string>());
         }
 
         [Test]
@@ -54,10 +54,10 @@ namespace Transmax.Core.Tests.Csv
 
             // Act
             m_Sut.WriteAllLines(new[]
-            {
-                "line1",
-                "line2"
-            });
+                                {
+                                    "line1",
+                                    "line2"
+                                });
 
             // Assert
             m_Console.Received().WriteLine("line1");
@@ -69,10 +69,10 @@ namespace Transmax.Core.Tests.Csv
         {
             // Arrange
             var lines = new[]
-            {
-                "line1",
-                "line2"
-            };
+                        {
+                            "line1",
+                            "line2"
+                        };
             var filename = "students.txt";
 
             m_Sut.Filename = filename;
@@ -83,7 +83,7 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_File.Received().WriteAllLines(filename,
-                lines);
+                                            lines);
         }
 
         [Test]
@@ -91,10 +91,10 @@ namespace Transmax.Core.Tests.Csv
         {
             // Arrange
             var lines = new[]
-            {
-                "line1",
-                "line2"
-            };
+                        {
+                            "line1",
+                            "line2"
+                        };
             var filename = "students.txt";
 
             m_Sut.Filename = filename;
@@ -105,7 +105,7 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_File.Received().WriteAllLines(filename,
-                lines);
+                                            lines);
         }
     }
 }

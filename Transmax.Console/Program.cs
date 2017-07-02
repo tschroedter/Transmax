@@ -10,32 +10,37 @@ using static System.Console;
 namespace Transmax.Console
 {
     /*
-     * Attention: I am using the NuGet package FluentCommandLineParser to process
-     *            the command line parameters. This makes it easier to add new 
-     *            paramater in the future.
+     * Attention: 
+     * (1) I am using the NuGet package FluentCommandLineParser to process
+     *     the command line parameters. This makes it easier to add new 
+     *     paramater in the future.
      *
-     *            The way of calling the program with parameters is:
-     *            grade-scores.exe -f <filename>
-     *            or
-     *            grade-scores.exe -filename <filename>
+     *     The way of calling the program with parameters is:
+     *     grade-scores.exe -f <filename>
+     *     or
+     *     grade-scores.exe -filename <filename>
+     *
+     * (2) No CSV file validation is done, I assume at the moment that the 
+     *     content of the file is valid!
+     * 
      */
     public static class Program
     {
         public static void Main(string[] args)
         {
-            var container = CreateContainer();
+            IContainer container = CreateContainer();
 
-            var parser = CreateParser(container,
-                args);
+            ICommandLineParser parser = CreateParser(container,
+                                                     args);
 
-            if (parser.HasError)
+            if ( parser.HasError )
             {
                 WriteLine("Please fix existing errors!");
 
                 return;
             }
 
-            var grader = container.Resolve<IGradeRunner>();
+            var grader = container.Resolve <IGradeRunner>();
             grader.Grade(parser.ApplicationArguments.Filename);
 
             WriteLine("Press a key to continue...");
@@ -45,11 +50,11 @@ namespace Transmax.Console
         private static IContainer CreateContainer()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule<LoggingModule>();
-            builder.RegisterModule<TransmaxCommonModule>();
-            builder.RegisterModule<TransmaxCommandLineModule>();
-            builder.RegisterModule<TransmaxCoreModule>();
-            var container = builder.Build();
+            builder.RegisterModule <LoggingModule>();
+            builder.RegisterModule <TransmaxCommonModule>();
+            builder.RegisterModule <TransmaxCommandLineModule>();
+            builder.RegisterModule <TransmaxCoreModule>();
+            IContainer container = builder.Build();
             return container;
         }
 
@@ -57,7 +62,7 @@ namespace Transmax.Console
             [NotNull] IContainer container,
             [NotNull] string[] args)
         {
-            var parser = container.Resolve<ICommandLineParser>();
+            var parser = container.Resolve <ICommandLineParser>();
             parser.Parse(args);
             return parser;
         }

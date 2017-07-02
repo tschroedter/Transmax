@@ -1,6 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=3DD1CCB0E2F06A4A8259B9F58D8242CF/AbsolutePath/@EntryValue">C:\Development\GitHub\csharp_examples\Selkie.DotSettings</s:String>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=3DD1CCB0E2F06A4A8259B9F58D8242CF/RelativePath/@EntryValue">..\..\..\..\GitHub\csharp_examples\Selkie.DotSettings</s:String>
-	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=3DD1CCB0E2F06A4A8259B9F58D8242CF/@KeyIndexDefined">True</s:Boolean>
-	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File3DD1CCB0E2F06A4A8259B9F58D8242CF/@KeyIndexDefined">True</s:Boolean>
-	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File3DD1CCB0E2F06A4A8259B9F58D8242CF/RelativePriority/@EntryValue">1</s:Double></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=6D2D689A808CFA468524CB85C3ED4784/AbsolutePath/@EntryValue">C:\Development\GitHub\csharp_examples\Selkie.DotSettings</s:String>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=6D2D689A808CFA468524CB85C3ED4784/RelativePath/@EntryValue">..\..\csharp_examples\Selkie.DotSettings</s:String>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=6D2D689A808CFA468524CB85C3ED4784/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File6D2D689A808CFA468524CB85C3ED4784/@KeyIndexDefined">True</s:Boolean>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File6D2D689A808CFA468524CB85C3ED4784/RelativePriority/@EntryValue">1</s:Double></wpf:ResourceDictionary>

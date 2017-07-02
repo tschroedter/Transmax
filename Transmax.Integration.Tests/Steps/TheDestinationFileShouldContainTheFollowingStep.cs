@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
 using NUnit.Framework;
@@ -25,25 +26,28 @@ namespace Transmax.Integration.Tests.Steps
         {
             var file = new SpecFlowFile(DestinationFilename);
 
-            if (!file.Exists)
+            if ( !file.Exists )
+            {
                 Assert.Fail("Destination file '{0}' doesn't exists!".Inject(file.FullName));
+            }
 
-            var actual =
+            IEnumerable <StudentScores> actual =
                 file.ReadAllLines()
                     .SelectMany(line => line.Split('\r'))
                     .Where(csvLine => !string.IsNullOrWhiteSpace(csvLine))
                     .Select(csvLine => new
-                    {
-                        data = csvLine.Trim().Split(',')
-                    })
+                                       {
+                                           data = csvLine.Trim().Split(',')
+                                       })
                     .Select(s => new StudentScores
-                    {
-                        Surname = s.data[ColumnSurname].Trim(),
-                        FirstName = s.data[ColumnFirstName].Trim(),
-                        Score = s.data[ColumnScore].Trim()
-                    });
+                                 {
+                                     Surname = s.data [ ColumnSurname ].Trim(),
+                                     FirstName = s.data [ ColumnFirstName ].Trim(),
+                                     Score = s.data [ ColumnScore ].Trim()
+                                 });
 
-            table.CompareToSet(actual, true);
+            table.CompareToSet(actual,
+                               true);
         }
     }
 }

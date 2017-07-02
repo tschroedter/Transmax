@@ -8,9 +8,9 @@ namespace Transmax.Integration.Tests.Steps.Common
     {
         protected BaseStep()
         {
-            GraderRunner = (IGradeRunner) ScenarioContext.Current["IGradeRunner"];
-            SourceFilename = (string) ScenarioContext.Current["SourceFilename"];
-            DestinationFilename = (string) ScenarioContext.Current["DestinationFilename"];
+            GraderRunner = ( IGradeRunner ) ScenarioContext.Current [ "IGradeRunner" ];
+            SourceFilename = ( string ) ScenarioContext.Current [ "SourceFilename" ];
+            DestinationFilename = ( string ) ScenarioContext.Current [ "DestinationFilename" ];
         }
 
         protected IGradeRunner GraderRunner { get; }

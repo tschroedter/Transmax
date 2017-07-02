@@ -6,6 +6,6 @@ namespace Transmax.Core.Interfaces.Csv
     public interface IOutputFile
         : IFilename
     {
-        void WriteAllLines([NotNull] IEnumerable<string> lines);
+        void WriteAllLines([NotNull] IEnumerable <string> lines);
     }
 }

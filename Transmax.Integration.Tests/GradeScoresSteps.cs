@@ -14,42 +14,42 @@ namespace Transmax.Integration.Tests
     [ExcludeFromCodeCoverage]
     public class GradeScoresSteps
     {
-        [BeforeScenario]
-        [UsedImplicitly]
-        public void BeforeScenario()
-        {
-            var container = CreateContainer();
-
-
-            var runner = container.Resolve<IGradeRunner>();
-
-            ScenarioContext.Current["IContainer"] = container;
-            ScenarioContext.Current["IGradeRunner"] = runner;
-            ScenarioContext.Current["SourceFilename"] = "students.txt";
-            ScenarioContext.Current["DestinationFilename"] = "students-graded.txt";
-        }
-
         [AfterScenario]
         [UsedImplicitly]
         public void AfterScenario()
         {
-            var source = (string) ScenarioContext.Current["SourceFilename"];
+            var source = ( string ) ScenarioContext.Current [ "SourceFilename" ];
             var sourceFile = new SpecFlowFile(source);
             sourceFile.Delete();
 
-            var destination = (string) ScenarioContext.Current["DestinationFilename"];
+            var destination = ( string ) ScenarioContext.Current [ "DestinationFilename" ];
             var destinationFile = new SpecFlowFile(destination);
             destinationFile.Delete();
+        }
+
+        [BeforeScenario]
+        [UsedImplicitly]
+        public void BeforeScenario()
+        {
+            IContainer container = CreateContainer();
+
+
+            var runner = container.Resolve <IGradeRunner>();
+
+            ScenarioContext.Current [ "IContainer" ] = container;
+            ScenarioContext.Current [ "IGradeRunner" ] = runner;
+            ScenarioContext.Current [ "SourceFilename" ] = "students.txt";
+            ScenarioContext.Current [ "DestinationFilename" ] = "students-graded.txt";
         }
 
         private static IContainer CreateContainer()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule<LoggingModule>();
-            builder.RegisterModule<TransmaxCommonModule>();
-            builder.RegisterModule<TransmaxCommandLineModule>();
-            builder.RegisterModule<TransmaxCoreModule>();
-            var container = builder.Build();
+            builder.RegisterModule <LoggingModule>();
+            builder.RegisterModule <TransmaxCommonModule>();
+            builder.RegisterModule <TransmaxCommandLineModule>();
+            builder.RegisterModule <TransmaxCoreModule>();
+            IContainer container = builder.Build();
             return container;
         }
     }
