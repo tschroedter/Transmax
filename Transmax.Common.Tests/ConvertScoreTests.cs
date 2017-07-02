@@ -7,14 +7,22 @@ namespace Transmax.Common.Tests
     [ExcludeFromCodeCoverage]
     internal sealed class ConvertScoreTests
     {
-        [TestCase("-1", -1)]
-        [TestCase("0", 0)]
-        [TestCase("1", 1)]
-        [TestCase("99", 99)]
-        [TestCase("100", 100)]
-        [TestCase("abc", int.MinValue)]
-        [TestCase("", int.MinValue)]
-        [TestCase(null, int.MinValue)]
+        [TestCase("-1",
+            -1)]
+        [TestCase("0",
+            0)]
+        [TestCase("1",
+            1)]
+        [TestCase("99",
+            99)]
+        [TestCase("100",
+            100)]
+        [TestCase("abc",
+            int.MinValue)]
+        [TestCase("",
+            int.MinValue)]
+        [TestCase(null,
+            int.MinValue)]
         public void ToInt32_Returns_Integer(
             string text,
             int expected)
