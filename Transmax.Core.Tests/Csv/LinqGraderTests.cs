@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using JetBrains.Annotations;
 using NSubstitute;
 using NSubstituteAutoMocker;
 using NUnit.Framework;
 using Transmax.Core.Csv;
 using Transmax.Core.Interfaces.Csv;
+using static System.Console;
 
 namespace Transmax.Core.Tests.Csv
 {
@@ -33,10 +35,10 @@ namespace Transmax.Core.Tests.Csv
         {
             return new[]
                    {
-                       "BUNDY, TED, 88",
-                       "SMITH, ALLAN, 85",
-                       "SMITH, FRANCIS, 85",
-                       "KING, MADISON, 83"
+                       "BUNDY,TED,88",
+                       "SMITH,ALLAN,85",
+                       "SMITH,FRANCIS,85",
+                       "KING,MADISON,83"
                    };
         }
 
@@ -44,10 +46,10 @@ namespace Transmax.Core.Tests.Csv
         {
             return new[]
                    {
-                       "BUNDY, TED, 88",
-                       "SMITH, allan, 85",
-                       "smith, francis, 85",
-                       "king, MADISON, 83"
+                       "BUNDY,TED,88",
+                       "SMITH,allan,85",
+                       "smith,francis,85",
+                       "king,MADISON,83"
                    };
         }
 
@@ -90,11 +92,11 @@ namespace Transmax.Core.Tests.Csv
         {
             return new[]
                    {
-                       "BUNDY, TED, 88",
-                       "SMITH, ALLAN, 85",
-                       "SMITH, FRANCIS, 85",
-                       "KING, MADISON, 83",
-                       "COOL, JOE, " + int.MinValue
+                       "BUNDY,TED,88",
+                       "SMITH,ALLAN,85",
+                       "SMITH,FRANCIS,85",
+                       "KING,MADISON,83",
+                       "COOL,JOE," + int.MinValue
                    };
         }
 
@@ -102,11 +104,37 @@ namespace Transmax.Core.Tests.Csv
         {
             return new[]
                    {
-                       "TED, BUNDY, 88",
-                       "allan, SMITH, 85",
-                       "MADISON, king, 83",
-                       "francis, smith, 85"
+                       "TED,BUNDY,88",
+                       "allan,SMITH,85",
+                       "MADISON,king,83",
+                       "francis,smith,85"
                    };
+        }
+
+        private bool CompareLines(
+            [NotNull] IEnumerable <string> expected,
+            [NotNull] IEnumerable <string> actual)
+        {
+            for ( var i = 0 ; i < actual.Count() ; i++ )
+            {
+                string expectedAt = expected.ElementAt(i);
+                string actualAt = actual.ElementAt(i);
+
+                Write("[{0}] Expected: '{1}' Actual: '{2}'",
+                      i,
+                      expectedAt,
+                      actualAt);
+
+                if ( expectedAt.CompareTo(actualAt) != 0 )
+                {
+                    WriteLine(" - FAILED");
+                    return false;
+                }
+
+                WriteLine(" - PASS");
+            }
+
+            return true;
         }
 
         [Test]
@@ -150,7 +178,8 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_Output.Received()
-                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => CompareLines(expected,
+                                                                                   x)));
         }
 
         [Test]
@@ -165,7 +194,8 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_Output.Received()
-                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => CompareLines(expected,
+                                                                                   x)));
         }
 
 
@@ -181,7 +211,8 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_Output.Received()
-                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => CompareLines(expected,
+                                                                                   x)));
         }
 
         [Test]
@@ -196,7 +227,8 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_Output.Received()
-                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => CompareLines(expected,
+                                                                                   x)));
         }
 
         [Test]
@@ -211,7 +243,8 @@ namespace Transmax.Core.Tests.Csv
 
             // Assert
             m_Output.Received()
-                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => x.SequenceEqual(expected)));
+                    .WriteAllLines(Arg.Is <IEnumerable <string>>(x => CompareLines(expected,
+                                                                                   x)));
         }
 
         [Test]

@@ -8,7 +8,7 @@ using Transmax.Core.Interfaces.Csv;
 namespace Transmax.Core.Csv
 {
     [UsedImplicitly]
-    public partial class LinqGrader
+    public class LinqGrader
         : IGrader
     {
         public LinqGrader(
@@ -88,7 +88,7 @@ namespace Transmax.Core.Csv
                                .ThenBy(x => x.Surname.ToUpper())
                                .ThenBy(x => x.FirstName.ToUpper());
 
-            IEnumerable <string> lines = input.Select(x => x.Surname + ", " + x.FirstName + ", " + x.Score);
+            IEnumerable <string> lines = input.Select(x => x.Surname + "," + x.FirstName + "," + x.Score);
 
             m_Output.WriteAllLines(lines);
         }
