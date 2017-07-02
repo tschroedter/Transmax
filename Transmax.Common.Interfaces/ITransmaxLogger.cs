@@ -9,11 +9,11 @@ namespace Transmax.Common.Interfaces
         void Error(string message);
 
         void Error([NotNull] string message,
-                   [NotNull] Exception exception);
+            [NotNull] Exception exception);
 
         void Fatal(string message);
 
         void Fatal([NotNull] string message,
-                   [NotNull] Exception exception);
+            [NotNull] Exception exception);
     }
 }

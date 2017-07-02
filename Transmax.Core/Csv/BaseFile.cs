@@ -10,15 +10,14 @@ namespace Transmax.Core.Csv
     public abstract class BaseFile
         : IFilename
     {
+        [NotNull] protected readonly ITransmaxFile File;
+
         protected BaseFile(
             [NotNull] ITransmaxFile file)
         {
             File = file;
             Filename = string.Empty;
         }
-
-        [NotNull]
-        protected readonly ITransmaxFile File;
 
         public string Filename { get; set; }
     }

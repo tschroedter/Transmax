@@ -11,6 +11,13 @@ namespace Transmax.Core
     public class GradeRunner
         : IGradeRunner
     {
+        private const string ExceptionMessageIo = "Grading stopped because of a problem with the file!";
+        private const string ExceptionMessageGrader = "Grading stopped because of a problem with the 'Grader'!";
+        private readonly ITransmaxConsole m_Console;
+
+        private readonly IGrader m_Grader;
+        private readonly ITransmaxLogger m_Logger;
+
         public GradeRunner(
             [NotNull] ITransmaxLogger logger,
             [NotNull] ITransmaxConsole console,
@@ -21,30 +28,23 @@ namespace Transmax.Core
             m_Grader = grader;
         }
 
-        private const string ExceptionMessageIo = "Grading stopped because of a problem with the file!";
-        private const string ExceptionMessageGrader = "Grading stopped because of a problem with the 'Grader'!";
-        private readonly ITransmaxConsole m_Console;
-
-        private readonly IGrader m_Grader;
-        private readonly ITransmaxLogger m_Logger;
-
         public void Grade(string sourceFilename)
         {
             try
             {
                 Process(sourceFilename);
             }
-            catch ( IOException exception )
+            catch (IOException exception)
             {
                 m_Logger.Fatal(ExceptionMessageIo,
-                               exception);
+                    exception);
 
                 m_Console.WriteLine(ExceptionMessageGrader);
             }
-            catch ( GraderException exception )
+            catch (GraderException exception)
             {
                 m_Logger.Fatal(ExceptionMessageGrader,
-                               exception);
+                    exception);
 
                 m_Console.WriteLine(ExceptionMessageGrader);
             }
@@ -52,22 +52,20 @@ namespace Transmax.Core
 
         private static string CreateDestinationFilename(string sourceFilename)
         {
-            string destinationFilename =
+            var destinationFilename =
                 Path.GetDirectoryName(sourceFilename) +
                 Path.DirectorySeparatorChar +
                 Path.GetFileNameWithoutExtension(sourceFilename) + "-graded.txt";
 
-            if ( destinationFilename.StartsWith(Path.DirectorySeparatorChar.ToString()) )
-            {
+            if (destinationFilename.StartsWith(Path.DirectorySeparatorChar.ToString()))
                 destinationFilename = destinationFilename.Substring(Path.DirectorySeparatorChar.ToString().Length);
-            }
 
             return destinationFilename;
         }
 
         private void Process(string sourceFilename)
         {
-            string destinationFilename = CreateDestinationFilename(sourceFilename);
+            var destinationFilename = CreateDestinationFilename(sourceFilename);
 
             m_Grader.SourceFilename = sourceFilename;
             m_Grader.DestinationFilename = destinationFilename;

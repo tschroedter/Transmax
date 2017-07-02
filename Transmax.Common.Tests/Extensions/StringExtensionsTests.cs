@@ -12,11 +12,11 @@ namespace Transmax.Common.Tests.Extensions
         public void InjectTest()
         {
             const string expected = "Text: Hello World!";
-            string actual = "Text: {0} {1}!".Inject("Hello",
-                                                    "World");
+            var actual = "Text: {0} {1}!".Inject("Hello",
+                "World");
 
             Assert.AreEqual(expected,
-                            actual);
+                actual);
         }
     }
 }

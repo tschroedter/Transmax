@@ -12,8 +12,8 @@ namespace Transmax.Common
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType <TransmaxLogger>().As <ITransmaxLogger>();
-            builder.RegisterType <TransmaxConsole>().As <ITransmaxConsole>();
+            builder.RegisterType<TransmaxLogger>().As<ITransmaxLogger>();
+            builder.RegisterType<TransmaxConsole>().As<ITransmaxConsole>();
         }
     }
 }

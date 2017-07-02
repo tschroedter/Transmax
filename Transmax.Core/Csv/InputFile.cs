@@ -10,7 +10,7 @@ namespace Transmax.Core.Csv
     [ExcludeFromCodeCoverage]
     public class InputFile
         : BaseFile,
-          IInputFile
+            IInputFile
     {
         public InputFile(
             [NotNull] ITransmaxFile file)
@@ -18,7 +18,7 @@ namespace Transmax.Core.Csv
         {
         }
 
-        public IEnumerable <string> ReadLines()
+        public IEnumerable<string> ReadLines()
         {
             return File.ReadLines(Filename);
         }

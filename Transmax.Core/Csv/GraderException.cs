@@ -10,7 +10,7 @@ namespace Transmax.Core.Csv
             [NotNull] string message,
             [NotNull] Exception innerException)
             : base(message,
-                   innerException)
+                innerException)
         {
         }
     }

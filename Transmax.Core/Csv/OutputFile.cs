@@ -9,8 +9,12 @@ namespace Transmax.Core.Csv
     [UsedImplicitly]
     public class OutputFile
         : BaseFile,
-          IOutputFile
+            IOutputFile
     {
+        [NotNull] private readonly ITransmaxConsole m_Console;
+
+        [NotNull] private readonly IApplicationMode m_Mode;
+
         public OutputFile(
             [NotNull] IApplicationMode mode,
             [NotNull] ITransmaxConsole console,
@@ -21,24 +25,16 @@ namespace Transmax.Core.Csv
             m_Console = console;
         }
 
-        [NotNull]
-        private readonly ITransmaxConsole m_Console;
-
-        [NotNull]
-        private readonly IApplicationMode m_Mode;
-
-        public void WriteAllLines(IEnumerable <string> lines)
+        public void WriteAllLines(IEnumerable<string> lines)
         {
             // ReSharper disable PossibleMultipleEnumeration
             File.WriteAllLines(Filename,
-                               lines);
+                lines);
 
-            if ( m_Mode.IsRelease )
-            {
+            if (m_Mode.IsRelease)
                 return;
-            }
 
-            foreach ( string line in lines )
+            foreach (var line in lines)
             {
                 m_Console.WriteLine(line);
             }

@@ -23,19 +23,19 @@ namespace Transmax.Console
     {
         public static void Main(string[] args)
         {
-            IContainer container = CreateContainer();
+            var container = CreateContainer();
 
-            ICommandLineParser parser = CreateParser(container,
-                                                     args);
+            var parser = CreateParser(container,
+                args);
 
-            if ( parser.HasError )
+            if (parser.HasError)
             {
                 WriteLine("Please fix existing errors!");
 
                 return;
             }
 
-            var grader = container.Resolve <IGradeRunner>();
+            var grader = container.Resolve<IGradeRunner>();
             grader.Grade(parser.ApplicationArguments.Filename);
 
             WriteLine("Press a key to continue...");
@@ -45,11 +45,11 @@ namespace Transmax.Console
         private static IContainer CreateContainer()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule <LoggingModule>();
-            builder.RegisterModule <TransmaxCommonModule>();
-            builder.RegisterModule <TransmaxCommandLineModule>();
-            builder.RegisterModule <TransmaxCoreModule>();
-            IContainer container = builder.Build();
+            builder.RegisterModule<LoggingModule>();
+            builder.RegisterModule<TransmaxCommonModule>();
+            builder.RegisterModule<TransmaxCommandLineModule>();
+            builder.RegisterModule<TransmaxCoreModule>();
+            var container = builder.Build();
             return container;
         }
 
@@ -57,7 +57,7 @@ namespace Transmax.Console
             [NotNull] IContainer container,
             [NotNull] string[] args)
         {
-            var parser = container.Resolve <ICommandLineParser>();
+            var parser = container.Resolve<ICommandLineParser>();
             parser.Parse(args);
             return parser;
         }
