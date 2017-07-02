@@ -8,157 +8,179 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
-
 #region Designer generated code
-
-using TechTalk.SpecFlow;
-
 #pragma warning disable
 namespace Transmax.Integration.Tests
 {
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow",
-        "2.2.0.0")]
+    using TechTalk.SpecFlow;
+    
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("GradeScores")]
     public partial class GradeScoresFeature
     {
-        [NUnit.Framework.SetUpAttribute()]
-        public virtual void TestInitialize()
-        {
-        }
-
-        [NUnit.Framework.TearDownAttribute()]
-        public virtual void ScenarioTearDown()
-        {
-            testRunner.OnScenarioEnd();
-        }
-
+        
         private TechTalk.SpecFlow.ITestRunner testRunner;
-
+        
+#line 1 "GradeScores.feature"
+#line hidden
+        
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
-                                                                "GradeScores",
-                                                                null,
-                                                                ProgrammingLanguage.CSharp,
-                                                                ( ( string[] ) ( null ) ));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GradeScores", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
-
+        
         [NUnit.Framework.OneTimeTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-
+        
+        [NUnit.Framework.SetUpAttribute()]
+        public virtual void TestInitialize()
+        {
+        }
+        
+        [NUnit.Framework.TearDownAttribute()]
+        public virtual void ScenarioTearDown()
+        {
+            testRunner.OnScenarioEnd();
+        }
+        
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-
+        
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Given Example")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
         public virtual void GivenExample()
         {
-            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given Example",
-                                                                  new string[]
-                                                                  {
-                                                                      "mytag"
-                                                                  });
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given Example", ((string[])(null)));
+#line 3
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "FirstName",
+                        "Surname",
+                        "Score"});
+            table1.AddRow(new string[] {
+                        "TED",
+                        "BUNDY",
+                        "88"});
+            table1.AddRow(new string[] {
+                        "ALLAN",
+                        "SMITH",
+                        "85"});
+            table1.AddRow(new string[] {
+                        "MADISON",
+                        "KING",
+                        "83"});
+            table1.AddRow(new string[] {
+                        "FRANCIS",
+                        "SMITH",
+                        "85"});
 #line 4
-            this.ScenarioSetup(scenarioInfo);
+    testRunner.Given("Given the source file contains the following:", ((string)(null)), table1, "Given ");
+#line 10
+    testRunner.When("the file is graded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            var table1 = new TechTalk.SpecFlow.Table(new string[]
-                                                     {
-                                                         "FirstName",
-                                                         "Surname",
-                                                         "Score"
-                                                     });
-            table1.AddRow(new string[]
-                          {
-                              "TED",
-                              "BUNDY",
-                              "88"
-                          });
-            table1.AddRow(new string[]
-                          {
-                              "ALLAN",
-                              "SMITH",
-                              "85"
-                          });
-            table1.AddRow(new string[]
-                          {
-                              "MADISON",
-                              "KING",
-                              "83"
-                          });
-            table1.AddRow(new string[]
-                          {
-                              "FRANCIS",
-                              "SMITH",
-                              "85"
-                          });
-#line 5
-            testRunner.Given("Given the source file contains the following:",
-                             ( ( string ) ( null ) ),
-                             table1,
-                             "Given ");
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Surname",
+                        "FirstName",
+                        "Score"});
+            table2.AddRow(new string[] {
+                        "BUNDY",
+                        "TED",
+                        "88"});
+            table2.AddRow(new string[] {
+                        "SMITH",
+                        "ALLAN",
+                        "85"});
+            table2.AddRow(new string[] {
+                        "SMITH",
+                        "FRANCIS",
+                        "85"});
+            table2.AddRow(new string[] {
+                        "KING",
+                        "MADISON",
+                        "83"});
 #line 11
-            testRunner.When("the file is graded",
-                            ( ( string ) ( null ) ),
-                            ( ( TechTalk.SpecFlow.Table ) ( null ) ),
-                            "When ");
+    testRunner.Then("the destination file should contain the following:", ((string)(null)), table2, "Then ");
 #line hidden
-            var table2 = new TechTalk.SpecFlow.Table(new string[]
-                                                     {
-                                                         "Surname",
-                                                         "FirstName",
-                                                         "Score"
-                                                     });
-            table2.AddRow(new string[]
-                          {
-                              "BUNDY",
-                              "TED",
-                              "88"
-                          });
-            table2.AddRow(new string[]
-                          {
-                              "SMITH",
-                              "ALLAN",
-                              "85"
-                          });
-            table2.AddRow(new string[]
-                          {
-                              "SMITH",
-                              "FRANCIS",
-                              "85"
-                          });
-            table2.AddRow(new string[]
-                          {
-                              "KING",
-                              "MADISON",
-                              "83"
-                          });
-#line 12
-            testRunner.Then("the destination file should contain the following:",
-                            ( ( string ) ( null ) ),
-                            table2,
-                            "Then ");
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Given Example With Upper And Lower Case")]
+        public virtual void GivenExampleWithUpperAndLowerCase()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given Example With Upper And Lower Case", ((string[])(null)));
+#line 18
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "FirstName",
+                        "Surname",
+                        "Score"});
+            table3.AddRow(new string[] {
+                        "Ted",
+                        "Bundy",
+                        "88"});
+            table3.AddRow(new string[] {
+                        "Allan",
+                        "Smith",
+                        "85"});
+            table3.AddRow(new string[] {
+                        "Madison",
+                        "King",
+                        "83"});
+            table3.AddRow(new string[] {
+                        "Francis",
+                        "Smith",
+                        "85"});
+#line 19
+    testRunner.Given("Given the source file contains the following:", ((string)(null)), table3, "Given ");
+#line 25
+    testRunner.When("the file is graded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Surname",
+                        "FirstName",
+                        "Score"});
+            table4.AddRow(new string[] {
+                        "Bundy",
+                        "Ted",
+                        "88"});
+            table4.AddRow(new string[] {
+                        "Smith",
+                        "Allan",
+                        "85"});
+            table4.AddRow(new string[] {
+                        "Smith",
+                        "Francis",
+                        "85"});
+            table4.AddRow(new string[] {
+                        "King",
+                        "Madison",
+                        "83"});
+#line 26
+    testRunner.Then("the destination file should contain the following:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
     }
 }
 #pragma warning restore
-
 #endregion
