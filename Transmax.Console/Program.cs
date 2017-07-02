@@ -37,16 +37,13 @@ namespace Transmax.Console
 
             if ( parser.HasError )
             {
-                WriteLine("Please fix existing errors!");
+                WriteLine("Please fix existing command line errors!");
 
                 return;
             }
 
             var grader = container.Resolve <IGradeRunner>();
             grader.Grade(parser.ApplicationArguments.Filename);
-
-            WriteLine("Press a key to continue...");
-            ReadKey();
         }
 
         private static IContainer CreateContainer()
