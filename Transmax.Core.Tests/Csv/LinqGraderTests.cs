@@ -20,8 +20,13 @@ namespace Transmax.Core.Tests.Csv
         public void Setup()
         {
             m_Automocker = new NSubstituteAutoMocker <LinqGrader>();
+            m_Indices = m_Automocker.Get <IInputFileColumnIndices>();
             m_Input = m_Automocker.Get <IInputFile>();
             m_Output = m_Automocker.Get <IOutputFile>();
+
+            m_Indices.FirstName.Returns(0);
+            m_Indices.Surname.Returns(1);
+            m_Indices.Score.Returns(2);
 
             m_Sut = m_Automocker.ClassUnderTest;
         }
@@ -30,6 +35,7 @@ namespace Transmax.Core.Tests.Csv
         private IInputFile m_Input;
         private LinqGrader m_Sut;
         private IOutputFile m_Output;
+        private IInputFileColumnIndices m_Indices;
 
         private IEnumerable <string> CreateResult()
         {

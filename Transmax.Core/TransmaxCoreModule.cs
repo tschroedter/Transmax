@@ -22,6 +22,7 @@ namespace Transmax.Core
             builder.RegisterType <GradeRunner>().As <IGradeRunner>();
             builder.RegisterType <ApplicationMode>().As <IApplicationMode>();
             builder.RegisterType <TransmaxFile>().As <ITransmaxFile>();
+            builder.RegisterType <InputFileColumnIndices>().As <IInputFileColumnIndices>();
         }
     }
 }

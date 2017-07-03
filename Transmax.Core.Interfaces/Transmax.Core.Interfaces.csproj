@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Csv\IFilename.cs" />
+    <Compile Include="Csv\IInputFileColumnIndices.cs" />
     <Compile Include="IGrader.cs" />
     <Compile Include="Csv\IInputFile.cs" />
     <Compile Include="Csv\IOutputFile.cs" />

@@ -61,6 +61,7 @@
     <Compile Include="Csv\BaseFile.cs" />
     <Compile Include="Csv\InputFile.cs" />
     <Compile Include="Csv\ConvertScore.cs" />
+    <Compile Include="Csv\InputFileColumnIndices.cs" />
     <Compile Include="Csv\LinqGrader.cs" />
     <Compile Include="Csv\GraderException.cs" />
     <Compile Include="Csv\OutputFile.cs" />

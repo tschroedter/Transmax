@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Csv\InputFileColumnIndicesTests.cs" />
     <Compile Include="Csv\LinqGraderTests.cs" />
     <Compile Include="Csv\OutputFileTests.cs" />
     <Compile Include="GradeRunnerTests.cs" />

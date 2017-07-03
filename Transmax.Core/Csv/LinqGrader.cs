@@ -12,16 +12,17 @@ namespace Transmax.Core.Csv
         : IGrader
     {
         public LinqGrader(
+            [NotNull] IInputFileColumnIndices indices,
             [NotNull] IInputFile input,
             [NotNull] IOutputFile output)
         {
+            m_Indices = indices;
             m_Input = input;
             m_Output = output;
         }
 
-        private const int ColumnFirstName = 0;
-        private const int ColumnSurname = 1;
-        private const int ColumnScore = 2;
+        [NotNull]
+        private readonly IInputFileColumnIndices m_Indices;
 
         [NotNull]
         private readonly IInputFile m_Input;
@@ -78,9 +79,9 @@ namespace Transmax.Core.Csv
                                .Where(parts => parts.data.Length == 3)
                                .Select(s => new
                                             {
-                                                Surname = s.data [ ColumnSurname ].Trim(),
-                                                FirstName = s.data [ ColumnFirstName ].Trim(),
-                                                Score = ConvertScore.ToInt32(s.data [ ColumnScore ])
+                                                Surname = s.data [m_Indices.Surname].Trim(),
+                                                FirstName = s.data [m_Indices.FirstName].Trim(),
+                                                Score = ConvertScore.ToInt32(s.data [m_Indices.Score])
                                             })
                                .OrderByDescending(x => x.Score)
                                .ThenBy(x => x.Surname.ToUpper())
