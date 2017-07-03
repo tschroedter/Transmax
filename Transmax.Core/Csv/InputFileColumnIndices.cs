@@ -14,8 +14,8 @@ namespace Transmax.Core.Csv
             Score = 2;
         }
 
-        public int FirstName { get; private set; }
-        public int Surname { get; private set; }
-        public int Score { get; private set; }
+        public int FirstName { get; }
+        public int Surname { get; }
+        public int Score { get; }
     }
 }
