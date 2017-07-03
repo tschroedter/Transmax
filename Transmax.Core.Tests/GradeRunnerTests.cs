@@ -64,26 +64,6 @@ namespace Transmax.Core.Tests
         }
 
         [Test]
-        public void Grade_Handles_IOException()
-        {
-            // Arrange
-            m_Grader.When(x => x.Process())
-                    .Do(x =>
-                        {
-                            throw new IOException();
-                        });
-
-            // Act
-            m_Sut.Grade("students.txt");
-
-            // Assert
-            m_Logger.Received().Fatal(Arg.Any <string>(),
-                                      Arg.Any <IOException>());
-
-            m_Console.Received().WriteLine(Arg.Any <string>());
-        }
-
-        [Test]
         public void Grade_Sets_DestinationFilename_For_Filename_Only()
         {
             // Arrange
