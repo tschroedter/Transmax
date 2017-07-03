@@ -19,8 +19,6 @@ namespace Transmax.Core.Csv
             m_Output = output;
         }
 
-        private const string ExceptionMessage = "Can't grade student file!";
-
         private const int ColumnFirstName = 0;
         private const int ColumnSurname = 1;
         private const int ColumnScore = 2;
@@ -39,7 +37,7 @@ namespace Transmax.Core.Csv
             }
             catch ( Exception exception )
             {
-                throw new GraderException(ExceptionMessage,
+                throw new GraderException(exception.Message,
                                           exception);
             }
         }

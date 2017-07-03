@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using JetBrains.Annotations;
 using Transmax.Common.Extensions;
 using Transmax.Common.Interfaces;
@@ -21,8 +22,8 @@ namespace Transmax.Core
             m_Grader = grader;
         }
 
-        private const string ExceptionMessageIo = "Grading stopped because of a problem with the file!";
-        private const string ExceptionMessageGrader = "Grading stopped because of a problem with the 'Grader'!";
+        private const string ExceptionMessageIo = "Grading stopped because of a problem with the file:";
+        private const string ExceptionMessageGrader = "Grading stopped because of a problem with the 'Grader':";
         private readonly ITransmaxConsole m_Console;
 
         private readonly IGrader m_Grader;
@@ -39,14 +40,18 @@ namespace Transmax.Core
                 m_Logger.Fatal(ExceptionMessageIo,
                                exception);
 
-                m_Console.WriteLine(ExceptionMessageGrader);
+                m_Console.WriteLine(ExceptionMessageGrader
+                                    + Environment.NewLine
+                                    + exception.Message);
             }
             catch ( GraderException exception )
             {
                 m_Logger.Fatal(ExceptionMessageGrader,
                                exception);
 
-                m_Console.WriteLine(ExceptionMessageGrader);
+                m_Console.WriteLine(ExceptionMessageGrader
+                                    + Environment.NewLine
+                                    + exception.Message);
             }
         }
 
